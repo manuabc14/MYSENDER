@@ -1,0 +1,53 @@
+@model MYSENDER.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="~/css/materialize.min.css" />
+
+    <form asp-action="Create">
+    <div class="col s12 m5">
+        <h4>Contact</h4>
+        <hr />
+    <div class="col-md-offset-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="input-field">
+                <input asp-for="Nom" class="my-form-control" type="text" required="required"  id="inputnom"/>
+                <label asp-for="Nom" id="lblnom"></label>
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input asp-for="Prenom" class="my-form-control"  type="text" required="required" id="inputprenom"/>
+                <label asp-for="Prenom" id="lblprenom"></label>
+                <span asp-validation-for="Prenom" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input asp-for="Tel" class="my-form-control" type="text"  required="required" id="inputtel"/>
+                <label asp-for="Tel" id="lbltel"></label>
+                <span asp-validation-for="Tel" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ajouter" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+
+
+<div>
+    <a asp-action="Index">retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+}
