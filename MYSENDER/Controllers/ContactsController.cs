@@ -10,7 +10,7 @@ using MYSENDER.Models;
 namespace MYSENDER.Controllers
 {
     /// <summary>
-    /// Controller de contact
+    /// Controller Contact
     /// </summary>
     public class ContactsController : Controller
     {
