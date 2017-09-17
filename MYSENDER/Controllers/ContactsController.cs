@@ -9,6 +9,9 @@ using MYSENDER.Models;
 
 namespace MYSENDER.Controllers
 {
+    /// <summary>
+    /// Controller Contact
+    /// </summary>
     public class ContactsController : Controller
     {
         private readonly MYSENDERContext _context;
