@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MYSENDER", "MYSENDER\MYSENDER.csproj", "{4881AE8A-C676-406E-BCD7-46EC0413FFC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEL", "MODEL\MODEL.csproj", "{B4391E33-F0D4-4EA5-A0B6-7D1CC059D076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MODEL", "MODEL\MODEL.csproj", "{B4391E33-F0D4-4EA5-A0B6-7D1CC059D076}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55872A18-E07B-4D75-8ADE-4ABCDD075F5A}
 	EndGlobalSection
 EndGlobal
