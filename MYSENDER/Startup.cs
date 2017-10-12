@@ -38,7 +38,7 @@ namespace MYSENDER
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DESKTOP-0M7S8I3\SQLEXPRESS2012;Database=MYSENDER;Trusted_Connection=True;";
+            var connection = @"Server=.\SQLEXPRESS2014;Database=MYSENDER;User ID=sa;Password=esigelectrsb1;";
 
             services.AddEntityFramework().AddDbContext<MYSENDERContext>(options =>options.UseSqlServer(connection));
             // Add framework services.
