@@ -1,61 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Accueil";
 }
 @using Microsoft.AspNetCore.Mvc.Rendering
 @model MYSENDER.ViewModels.SmsModeViewModel
 <div class="row">
-    <h2>
-        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-        envoyer un nouveau <strong>sms au client</strong>
-    </h2>
+    <h1>
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> Annuaire des rendez-vous
+    </h1>
 </div>
 <div class="row" id="divContainer">
-    @*<img src="~/images/phone.png" alt="ASP.NET" class="img-responsive" id="imgPhone" />*@
-    @*<div class="col-lg-3" id="divMessage">
-        <H4>Nouveau message</H4>
-        @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true)
-            
-                @Html.AntiForgeryToken()
-                <div class="form-group">
-                    @Html.TextBoxFor(model => model.SmsMode.ReceiverNumber, new { @class = "form-control input-size", placeholder = "Saisir le destinataire" })
-                </div>
-                <div class="form-group">
-                    @Html.TextAreaFor(model => model.SmsMode.Message, new { @class = "form-control input-size", placeholder = "Ecrire un message", @cols = 70, @rows = 12, maxlength = 160, style = "resize: none" })
-                    <button type="submit" class="btn btn-sendsms" aria-label="Left Align" id="btnSendSms">
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    </button>
-                </div>
-            
-        }
-    </div>*@
-    <div class="col-lg-9">
+    <div class="col-lg-2">
+        <nav id="left-menu" class="shadow-lvl-1">
+            <ul class="left-menu-lvl-1">
+                <li class="title-lvl-2" >
+                    <a>menu 1</a>
+                </li>
+                <li class="title-lvl-2">
+                    <a>Menu 2</a>
+                </li>
+                <li class="title-lvl-2">
+                    <a>Menu 3</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-lg-10">
         <div class="row">
-            <h4> Statut</h4>
+            <h2> Historique des SMS Envoyés</h2>
             <hr class="hrstyle" />
-            <div class="col-lg-5">
-                <div id="divStatut">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">À:</label>
-                            <input type="text" class="form-control" id="txtRecept" placeholder="000000000000" readonly="readonly" style="width: 50%;">
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <textarea class="form-control" id="txtMessage" readonly="readonly" rows="4" cols="40" style="resize: none"></textarea>
-                                <span id="iconstatut" class="pull-right glyphicon glyphicon-send"></span>
-                                <label class="pull-right" id="lblDate"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <h4> Historique des SMS Envoyés</h4>
-            <hr class="hrstyle" />
-            <div class="row" style="padding-right: 20px;padding-left: 20px;">
+            <div id="historiques" class="shadow-lvl-1">
                 <table id="DtbHistorique" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
