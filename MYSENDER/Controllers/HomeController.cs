@@ -14,7 +14,7 @@ namespace MYSENDER.Controllers
         public IActionResult Index()
         {
             ViewBag.TotalAccount = SmsModeServices.Instance.GetSolde();
-           // AjaxHandler(new DttbParameter());
+
             return View();
         }
 
