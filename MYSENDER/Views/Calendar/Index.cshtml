@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Accueil";
+}
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model MYSENDER.ViewModels.SmsModeViewModel
+<div class="row">
+    <h1>Annuaire des rendez-vous</h1>
+</div>
+<div class="row" id="divContainer">
+    <div class="col-lg-3">
+        <nav id="left-menu" class="shadow-lvl-1">
+            <ul class="left-menu-lvl-1">
+                <li class="title-lvl-2">
+                    <a asp-area="" asp-controller="Calendar" asp-action="Index">Calendrier</a>
+                </li>
+                <li class="title-lvl-2">
+                    <a>Historiques des SMS</a>
+                </li>
+                <li class="title-lvl-2">
+                    <a></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-lg-9">
+        <div class="row">
+            <h2> Planning des RDV</h2>
+            <hr class="hrstyle" />
+            <div id='calendar' class="row"></div>
+        </div>
+    </div>
+</div>
