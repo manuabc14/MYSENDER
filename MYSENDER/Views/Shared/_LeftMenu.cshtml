@@ -1,0 +1,40 @@
+@model POPFormation.ViewModels.BaseViewModel
+<nav id="left-menu" class="shadow-lvl-1">
+    <ul class="left-menu-lvl-1">
+        @foreach (var menu in Model.LeftMenus.OrderBy(lm => lm.Order))
+        {
+            if (menu.IsVisible && menu.Title != "Notifications")
+            {
+                <li class="title-lvl-1 @(menu.IsActive ? "active" : "")">
+                    <a href="@Url.Action(menu.Link.Action, menu.Link.Controller)">@menu.Title</a>
+                </li>
+
+                if ((menu.SubMenus?.Any() ?? false) && menu.SubMenus.Any(sm => sm.IsVisible))
+                {
+                    <li>
+                        <ul class="left-menu-lvl-2">
+                            @foreach (var submenu in menu.SubMenus.OrderBy(sm => sm.Order))
+                            {
+                                if (submenu.IsVisible)
+                                {
+                                    <li class="title-lvl-2 @(submenu.IsActive ? "active" : "")">
+                                        <a href="@Url.Action(submenu.Link.Action, submenu.Link.Controller)">@submenu.Title</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+            else if (menu.Title == "Notifications")
+            {
+                <li class="title-lvl-1 @(menu.IsActive ? "active" : "")">
+                    <a href="@Url.Action("GetMailing", "Mailing")" type="button" data-toggle="modal" data-target="#modal-mail-container" class="@(menu.IsActive ? "submenu-active" : "")">
+                        <span>@menu.Title</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</nav>
+

@@ -9,7 +9,7 @@ using MYSENDER.Models;
 
 namespace MYSENDER.Controllers
 {
-    public class ContactsController : Controller
+    public class ContactsController : BaseController
     {
         private readonly MYSENDERContext _context;
 

@@ -1,5 +1,10 @@
 ﻿// Write your Javascript code.
 $(document).ready(function () {
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    });
+
     $('#DtbHistorique').DataTable(
         {
             "processing": true,
