@@ -1,0 +1,44 @@
+@using System.Configuration
+@model BaseViewModel
+
+<div class="top-header">
+    <div class="wrap-content">
+        <ul class="pull-right">
+            <li><a href="#">Aide en ligne</a></li>
+            <li><a href="@ConfigurationManager.AppSettings["link_atrium"]">Retour au portail</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="middle-header">
+    <div class="wrap-content">
+        <div class="wrap-logo-title">
+            <a href="@ConfigurationManager.AppSettings["link_atrium"]">
+                <img alt="List View" src="@Url.Content("~/Images/logo-pf.png")">
+                <h1 class="h1" aria-level="1">Bienvenue sur POPFORMATION</h1>
+            </a>
+        </div>
+        <div class="info-user pull-right">
+            @{
+    var src = string.IsNullOrEmpty(Model.Header.User.Picture)
+        ? Url.Content("~/Images/empty-user-picture.png")
+        : $"data:image/gif;base64,{Model.Header.User.Picture}";
+            }
+            
+            <div class="img-circle">
+                <img src="@src" alt="photo de profil utilistateur" class="img-user">
+            </div>
+
+            <div class="div-identification">
+                <a id="welcome" href="@Url.Action("Index", "Home")">Bonjour @Model.Header.User.FirstName @Model.Header.User.LastName</a>
+                <a id="link-disconnect" class="btn-default" href=@Url.Action("SignOutUser", "Home")>Déconnexion</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="bottom-header">
+    <div class="wrap-content">
+        @Html.Partial("_Menu", Model.Header)
+    </div>
+</div>

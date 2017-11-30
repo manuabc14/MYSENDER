@@ -1,0 +1,62 @@
+@using System.Web.UI.HtmlControls
+@using POPFormation.ViewModels
+@model HeaderViewModel
+
+<div class="main-menu">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Afficher menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            @foreach (var menu in Model.Menus.OrderBy(m => m.Order))
+            {
+                if (menu.IsVisible)
+                {
+                    <li class="@(menu.IsActive ? "menu-active" : string.Empty)@(menu.IsActive && menu.HasSubMenu ? " " : string.Empty)@(menu.HasSubMenu ? "dropdown" : string.Empty)">
+                        @if (!menu.HasSubMenu)
+                        {
+                            @Html.ActionLink(menu.Title, menu.Link.Action, menu.Link.Controller)
+                            continue;
+                        }
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@menu.Title</a>
+                        <ul class="sub-menu dropdown-menu">
+                            @foreach (var submenu in menu.SubMenus.OrderBy(sm => sm.Order))
+                            {
+                                if (submenu.IsVisible && submenu.Title != "Notifications")
+                                {
+                                    <li>
+                                        <a href="@Url.Action(submenu.Link.Action, submenu.Link.Controller)" class="@(submenu.IsActive ? "submenu-active" : "")">
+                                            <span>@submenu.Title</span>
+                                        </a>
+                                    </li>
+                                }
+                                else if (submenu.Title == "Notifications")
+                                {
+                                    <li>
+                                        <a href="@Url.Action("GetMailing", "Mailing")" type="button" data-toggle="modal" data-target="#modal-mail-container" class="@(submenu.IsActive ? "submenu-active" : "")">
+                                            <span>@submenu.Title</span>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+<div class="pull-right" id="profiles">
+    @using (Html.BeginForm("GetRole", "Right", FormMethod.Post))
+    {
+        var items = new List<SelectListItem>();
+        Model.User.Roles.ForEach(r => items.Add(new SelectListItem { Text = r.Profile.Name, Value = r.Profile.Id.ToString(), Selected = r.Profile.Id == Model.User.CurrentRole.Profile.Id }));
+
+        <div class="form-group dropdown-menu-role">
+            @Html.DropDownList("roleId", items, new { @class = "form-control", onchange = "this.form.submit();" })
+        </div>
+    }
+</div>

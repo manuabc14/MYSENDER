@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MYSENDER.Controllers
 {
-    public class CalendarController : Controller
+    public class CalendarController : BaseController
     {
         // GET: Calendar
         public ActionResult Index()
