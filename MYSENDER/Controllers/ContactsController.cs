@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MYSENDER.Models;
+using MYSENDER.ViewModels;
 
 namespace MYSENDER.Controllers
 {
@@ -21,7 +22,12 @@ namespace MYSENDER.Controllers
         // GET: Contacts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Contact.ToListAsync());
+            var model = new ContactsViewModel
+            {
+                Contacts = await _context.Contact.ToListAsync()
+            };
+
+            return View(model);
         }
 
         // GET: Contacts/Details/5
@@ -38,14 +44,22 @@ namespace MYSENDER.Controllers
             {
                 return NotFound();
             }
+            var model = new ContactsViewModel
+            {
+                Contact = contact
+            };
 
-            return View(contact);
+            return View(model);
         }
 
         // GET: Contacts/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new ContactsViewModel
+            {
+                Contact = new Contact()
+            };
+            return View(model);
         }
 
         // POST: Contacts/Create
@@ -61,7 +75,11 @@ namespace MYSENDER.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(contact);
+            var model = new ContactsViewModel
+            {
+                Contact = contact
+            };
+            return View(model);
         }
 
         // GET: Contacts/Edit/5
@@ -129,8 +147,11 @@ namespace MYSENDER.Controllers
             {
                 return NotFound();
             }
-
-            return View(contact);
+            var model = new ContactsViewModel
+            {
+                Contact = contact
+            };
+            return View(model);
         }
 
         // POST: Contacts/Delete/5

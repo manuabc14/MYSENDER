@@ -12,7 +12,6 @@ namespace MYSENDER.Controllers
         {
             var model = new AppointmentViewModel
             {
-                TotalAccount = SmsModeServices.Instance.GetSolde(),
                 Appointment = AppointmentService.Instance.GetAppointments()
             };
             return View(model);

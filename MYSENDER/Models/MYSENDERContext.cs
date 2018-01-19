@@ -13,7 +13,7 @@ namespace MYSENDER.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-0M7S8I3\SQLEXPRESS2012;Database=MYSENDER;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=TRSB1209002\SQLEXPRESS2014;Database=MYSENDER;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

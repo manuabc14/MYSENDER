@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/_LeftMenu.css" />
-    @RenderSection("css_head", true)
+    @RenderSection("css_head", false)
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,6 +51,6 @@
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    @RenderSection("scripts_body_bottom", true)
+    @RenderSection("scripts_body_bottom", false)
 </body>
 </html>

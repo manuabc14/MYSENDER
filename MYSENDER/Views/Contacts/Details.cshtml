@@ -1,7 +1,7 @@
-@model MYSENDER.Models.Contact
+@model MYSENDER.ViewModels.ContactsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Ajouter un contact";
 }
 
 <h2>Details</h2>
@@ -11,26 +11,26 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nom)
+            @Html.DisplayNameFor(model => model.Contact.Nom)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Nom)
+            @Html.DisplayFor(model => model.Contact.Nom)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Prenom)
+            @Html.DisplayNameFor(model => model.Contact.Prenom)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Prenom)
+            @Html.DisplayFor(model => model.Contact.Prenom)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Tel)
+            @Html.DisplayNameFor(model => model.Contact.Tel)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Tel)
+            @Html.DisplayFor(model => model.Contact.Tel)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Contact.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
