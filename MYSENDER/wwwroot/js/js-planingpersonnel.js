@@ -1,33 +1,31 @@
 ﻿$(document).ready(function () {
 
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-    //$("#CalendarPlaning").click(function () {
-
-    //    location.href = $("#planing").data("url-list-personnel");
-
-    //});
-
-    ///* initialize the external events
-    //     -----------------------------------------------------------------*/
-    //var event = $("#planing").data("model");
-    //event.forEach(function (e) {
-    //    e.start = moment(e.start, "DD/MM/YYYY hh:mm").format("YYYY-MM-DD hh:mm");
-    //    e.end = moment(e.end, "DD/MM/YYYY hh:mm").format("YYYY-MM-DD hh:mm");
-    //    e.end = moment(e.end).add(1, 'days'); // pour afficher les date de fin inclusive.
-    //});
-    ///* initialize the calendar
-    //-----------------------------------------------------------------*/
-    //var cal = $('#calendar').fullCalendar({
+    //$('#calendar').fullCalendar({
+    //    locale: "fr",
     //    header: {
-    //        left: 'prev,next today',
-    //        center: 'title',
-    //        right: 'month,agendaWeek,agendaDay'
+    //        left: "today prev,next title",
+    //        right: ""
     //    },
-    //    editable: true,
-    //    droppable: true,
-    //    events: event
+    //    eventLimit: 3,
+    //    eventLimitText: "supplémentaires",
+    //    dayOfWeekPopoverFormat: "ddd",
+    //    dayPopoverFormat: "D",
+    //    dayRender: function (date, cell) {
+    //        if (cell.hasClass("fc-today")) {
+    //            var index = cell.index();
+    //            var header = $("#calendar thead.fc-head th").eq(index);
+    //            header.addClass("fc-today");
+
+    //            var weeks = $("#calendar tbody.fc-body .fc-week");
+    //            if (weeks.length === 0) return;
+
+    //            var week = weeks[0];
+    //            var hasToday = $(week).find(".fc-today");
+    //            if (hasToday.length > 0) header.addClass("fc-today-now");
+    //        }
+    //    },
+    //    events: events
+    
     //});
 
 });

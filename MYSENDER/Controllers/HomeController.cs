@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MYSENDER.Models;
 using MYSENDER.Services;
 using MYSENDER.ViewModels;
+using System;
 
 namespace MYSENDER.Controllers
 {
@@ -13,9 +10,8 @@ namespace MYSENDER.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.TotalAccount = SmsModeServices.Instance.GetSolde();
-
-            return View();
+            var model = new SmsModeViewModel();
+            return View(model);
         }
 
         public ActionResult AjaxHandler(DttbParameter param)
@@ -57,11 +53,8 @@ namespace MYSENDER.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
-                    var template = new SmsModeModel{ReceiverNumber = model.SmsMode.ReceiverNumber,Message = model.SmsMode.Message};
+                    var template = new SmsModeModel { ReceiverNumber = model.SmsMode.ReceiverNumber, Message = model.SmsMode.Message };
                     var response = SmsModeServices.Instance.SendSms(template);
-
-                    
                 }
             }
             catch (Exception e)

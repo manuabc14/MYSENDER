@@ -1,26 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Accueil";
-}
-@using Microsoft.AspNetCore.Mvc.Rendering
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @model MYSENDER.ViewModels.SmsModeViewModel
+
+@section css_head {
+    <link rel="stylesheet" href="~/css/historiques.css" />
+    <link rel="stylesheet" href="~/lib/datatables/media/css/jquery.dataTables.min.css" />
+}
+
+@section scripts_body_bottom
+    {
+    <script src="~/lib/dataTables/media/js/jquery.dataTables.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/js-planingpersonnel.js" asp-append-version="true"></script>
+}
 <div class="row">
-    <h1>Annuaire des rendez-vous</h1>
+    <div class="wrap-logo-title">
+        <a href="https://atrium-rec.secourspopulaire.fr/">
+            <img alt="List View" src="/images/mySender-icon.png">
+            <h1 class="h1" aria-level="1">Bienvenue sur MySender</h1>
+        </a>
+    </div>
 </div>
 <div class="row" id="divContainer">
     <div class="col-lg-3">
-        <nav id="left-menu" class="shadow-lvl-1">
-            <ul class="left-menu-lvl-1">
-                <li class="title-lvl-2" >
-                    <a asp-area="" asp-controller="Calendar" asp-action="Index">Calendrier</a>
-                </li>
-                <li class="title-lvl-2">
-                    <a>Historiques des SMS</a>
-                </li>
-                <li class="title-lvl-2">
-                    <a></a>
-                </li>
-            </ul>
-        </nav>
+        @Html.Partial("_LeftMenu")
     </div>
     <div class="col-lg-9">
         <div class="row">

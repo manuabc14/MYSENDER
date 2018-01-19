@@ -199,3 +199,20 @@ textarea {
 .shadow-lvl-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+.wrap-logo-title {
+    height: 100%;
+    display: inline-block;
+}
+
+.wrap-logo-title img {
+    max-height: 95px;
+    display: inline-block
+}
+    .wrap-logo-title h1 {
+        display: inline-block;
+        color: black;
+    }
+#divContainer h2 {
+    margin-top: 0;
+}

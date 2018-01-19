@@ -1,13 +1,14 @@
-@using System.Configuration
-@model BaseViewModel
+@*@using System.Configuration
+@using MYSENDER.ViewModels
+@model MYSENDER.ViewModels.BaseViewModel
 
 <div class="top-header">
     <div class="wrap-content">
-        <ul class="pull-right">
+        @*<ul class="pull-right">
             <li><a href="#">Aide en ligne</a></li>
             <li><a href="@ConfigurationManager.AppSettings["link_atrium"]">Retour au portail</a></li>
-        </ul>
-        <div class="clearfix"></div>
+        </ul>*@
+        @*<div class="clearfix"></div>
     </div>
 </div>
 <div class="middle-header">
@@ -41,4 +42,4 @@
     <div class="wrap-content">
         @Html.Partial("_Menu", Model.Header)
     </div>
-</div>
+</div>*@*@

@@ -1,17 +1,17 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@model MYSENDER.ViewModels.BaseViewModel
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MYSENDER</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/lib/datatables/media/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/historiques.css" />
-    <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.css" />
-    <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.print.css" />
-    @Html.Raw(JavaScriptSnippet.FullScript)
+    <link rel="stylesheet" href="~/css/_LeftMenu.css" />
+    @RenderSection("css_head", true)
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -33,13 +33,11 @@
                         <ul class="dropdown-menu">
                             <li><a asp-area="" asp-controller="Contacts" asp-action="Index">Liste des contacts</a></li>
                             <li><a asp-area="" asp-controller="Contacts" asp-action="Create">Ajouter nouveau contact</a></li>
-                            @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MonUD" ? "active" : "")"><a href="@Url.Action("MonUD", "MesEntites")" data-target="#modal-container" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Mon union départementale</a></li>
-                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MaFD" ? "active" : "")"><a href="@Url.Action("MaFD", "MesEntites")" data-target="#modal-container" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Ma fédération</a></li>*@
                         </ul>
                     </li>
                 </ul>
                 <div class="pull-right" style="margin-top: 15px;">
-                    <span style="color: whitesmoke">Solde: @ViewBag.TotalAccount crédit(s)</span>
+                    <span style="color: whitesmoke">Solde: @Model.TotalAccount crédit(s)</span>
                 </div>
             </div>
         </div>
@@ -53,11 +51,6 @@
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/lib/dataTables/media/js/jquery.dataTables.js"></script>
-    <script src="~/js/fullcalendar/moment.min.js"></script>
-    <script src="~/js/fullcalendar/fullcalendar.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/js-planingpersonnel.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    @RenderSection("scripts_body_bottom", true)
 </body>
 </html>

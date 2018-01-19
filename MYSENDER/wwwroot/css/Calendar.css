@@ -1,0 +1,339 @@
+﻿#mysender-calendar {
+    padding: 20px 20px 25px;
+}
+
+    #mysender-calendar .fc-head-container {
+        border-bottom: 0;
+        border-color: #e0e0e0;
+    }
+
+    #mysender-calendar .fc-day-header {
+        text-align: left;
+        padding: 5px 8px 2px;
+        color: #757575;
+        font-weight: 400;
+    }
+
+    #mysender-calendar .fc-day-top {
+        padding: 0 9px;
+        color: #757575;
+        opacity: 1;
+    }
+
+        #mysender-calendar .fc-day-top .fc-day-number {
+            float: none;
+            padding: 0;
+        }
+
+    #mysender-calendar .fc-week:nth-child(n + 2) .fc-day-top {
+        padding-top: 5px;
+    }
+
+    #mysender-calendar .fc-widget-content {
+        border-top: 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    #mysender-calendar .fc-day-header.fc-today {
+        color: #4285f4;
+        font-weight: 500;
+    }
+
+    #mysender-calendar .fc-day-header.fc-today-now,
+    #mysender-calendar .fc-day.fc-today {
+        background-color: #f5f5f5;
+    }
+
+    #mysender-calendar .fc-today .fc-day-number {
+        background-color: #4285f4;
+        color: #fff;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        text-align: center;
+        line-height: 24px;
+        border-radius: 50%;
+    }
+
+    #mysender-calendar .dropdown-menu {
+        z-index: 100;
+        top: 0;
+        left: 0;
+    }
+
+        /*#mysender-calendar .dropdown-menu:before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: -20px;
+            left: 10%;
+            border: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+        }*/
+
+    #mysender-calendar .fc-day-grid-event {
+        border-radius: 2px;
+        border: 0;
+        padding: 4px 4px 3px 0;
+        margin-right: 12px;
+        background-color: #4285F4;
+        margin-left: 2px;
+        cursor: pointer;
+    }
+
+        #mysender-calendar .fc-day-grid-event:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 6px;
+            height: calc(100% - 2px);
+            background-color: #4285F4;
+            border-radius: 2px 0 0 2px;
+            margin: 1px;
+        }
+
+        #mysender-calendar .fc-day-grid-event.fc-event-highlight {
+            background-color: #80b4ff;
+        }
+
+        #mysender-calendar .fc-day-grid-event.fc-event-done {
+            opacity: 0.7;
+            cursor: initial;
+        }
+
+        #mysender-calendar .fc-day-grid-event.fc-event-planned:before {
+            background: repeating-linear-gradient(-45deg, #0059c1, #0059c1 2px, #fff 3px, #fff 5px)
+        }
+
+        #mysender-calendar .fc-day-grid-event.fc-event-open:before {
+            background-color: #fff;
+        }
+
+        #mysender-calendar .fc-day-grid-event.fc-event-ready:before {
+            background-color: #0059c1;
+        }
+
+        #mysender-calendar .fc-day-grid-event .fc-content {
+            padding-left: 12px;
+        }
+
+            #mysender-calendar .fc-day-grid-event .fc-content .fc-title {
+                font-weight: 500;
+            }
+
+.tooltip-inner {
+    max-width: none;
+}
+
+    .tooltip-inner hr {
+        max-width: none;
+        margin-top: 3px;
+        margin-bottom: 5px;
+        vertical-align: middle;
+    }
+
+.fc-event-tooltip {
+    text-align: left;
+}
+
+    .fc-event-tooltip .glyphicon,
+    #mysender-calendar .fc-day-grid-event .fc-content .fc-title .glyphicon {
+        margin-right: 5px;
+    }
+
+#mysender-calendar .fc-more-cell {
+    padding-top: 2px;
+}
+
+    #mysender-calendar .fc-more-cell .fc-more {
+        color: #757575;
+        font-weight: 700;
+        margin-left: 8px;
+    }
+
+        #mysender-calendar .fc-more-cell .fc-more:hover {
+            text-decoration: none;
+        }
+
+#mysender-calendar .fc-popover {
+    border: 0;
+    border-radius: 2px;
+    margin-top: 10px;
+    box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2)
+}
+
+    #mysender-calendar .fc-popover .fc-header .fc-title {
+        color: #616161;
+        font-size: 12px;
+        line-height: 12px;
+        margin-top: 11px;
+        margin-left: 10px;
+    }
+
+        #mysender-calendar .fc-popover .fc-header .fc-title .fc-day {
+            display: block;
+            font-size: 40px;
+            line-height: 40px;
+            margin-top: 8px;
+        }
+
+    #mysender-calendar .fc-popover .fc-header .fc-close {
+        margin-top: 4px;
+        font-size: 17px;
+        margin-right: 2px;
+        color: rgba(0,0,0,0.54);
+        padding: 10px;
+        transition: color 200ms cubic-bezier(0.4,0.0,0.2,1), background 200ms cubic-bezier(0.4,0.0,0.2,1), box-shadow 400ms cubic-bezier(0.4,0.0,0.2,1);
+    }
+
+        #mysender-calendar .fc-popover .fc-header .fc-close:hover {
+            background-color: rgba(0,0,0,.12);
+            color: #333;
+        }
+
+    #mysender-calendar .fc-popover .fc-header {
+        background-color: #fff;
+    }
+
+    #mysender-calendar .fc-popover .fc-body {
+        border-bottom: 0;
+    }
+
+    #mysender-calendar .fc-popover .fc-event-container {
+        padding: 5px 12px 14px;
+    }
+
+    #mysender-calendar .fc-popover .fc-event {
+        margin-right: 0;
+    }
+
+#mysender-calendar .fc-today-button {
+    color: #000;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: none;
+    background: none;
+    padding: 2px 12px 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: rgba(0,0,0,0.04);
+    transition: background-color 100ms linear;
+    opacity: 0.65;
+    outline: none;
+}
+
+    #mysender-calendar .fc-today-button:hover {
+        background-color: rgba(0,0,0,0.08);
+    }
+
+#mysender-calendar .fc-prev-button,
+#mysender-calendar .fc-next-button {
+    border: 0;
+    background: 0;
+    box-shadow: none;
+    padding: 0 2px;
+    outline: none;
+}
+
+    #mysender-calendar .fc-prev-button i,
+    #mysender-calendar .fc-next-button i {
+        font-size: 27px;
+        padding: 1px;
+        vertical-align: middle;
+        color: rgba(0,0,0,0.54);
+        transition: color 200ms cubic-bezier(0.4,0.0,0.2,1), background 200ms cubic-bezier(0.4,0.0,0.2,1), box-shadow 400ms cubic-bezier(0.4,0.0,0.2,1);
+    }
+
+        #mysender-calendar .fc-prev-button i:hover,
+        #mysender-calendar .fc-next-button i:hover {
+            background-color: rgba(0,0,0,.12);
+            color: #333 !important;
+        }
+
+#mysender-calendar .fc-today-button ~ h2 {
+    font-size: 20px;
+    vertical-align: bottom;
+    margin-top: 3px;
+    font-weight: 400;
+    opacity: 0.74;
+    margin-left: 10px;
+}
+
+#mysender-calendar .dropdown-menu {
+    border-radius: 0;
+    border: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+    #mysender-calendar .dropdown-menu li a {
+        padding: 6px 16px;
+        font-size: 14px;
+    }
+
+    #mysender-calendar .dropdown-menu .divider {
+        background-color: #ebebeb;
+        margin: 5px 0;
+    }
+
+#mysender-calendar .dropdown-submenu {
+    position: relative;
+}
+
+    #mysender-calendar .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -8px;
+        margin-left: 1px;
+    }
+
+    #mysender-calendar .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    #mysender-calendar .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #cccccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+    #mysender-calendar .dropdown-submenu:hover > a:after {
+        border-left-color: #ffffff;
+    }
+
+.VS-search .search_facet {
+    padding: 0 0 0 16px;
+}
+
+.VS-search .VS-icon-search {
+    background: none;
+    left: 5px;
+    top: 3px;
+}
+
+.VS-search .VS-icon-cancel {
+    background: none;
+    right: 15px;
+    top: 3px;
+}
+
+.VS-search .search_facet .search_facet_remove i.material-icons {
+    font-size: 14px;
+}
+
+.VS-search i.material-icons {
+    font-size: 22px;
+    color: #000000;
+    color: rgba(0,0,0,0.54);
+    margin: 0;
+}

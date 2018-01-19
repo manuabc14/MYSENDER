@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MYSENDER.Services;
+using MYSENDER.ViewModels;
 
 namespace MYSENDER.Controllers
 {
@@ -12,7 +10,12 @@ namespace MYSENDER.Controllers
         // GET: Calendar
         public ActionResult Index()
         {
-            return View();
+            var model = new AppointmentViewModel
+            {
+                TotalAccount = SmsModeServices.Instance.GetSolde(),
+                Appointment = AppointmentService.Instance.GetAppointments()
+            };
+            return View(model);
         }
 
         // GET: Calendar/Details/5

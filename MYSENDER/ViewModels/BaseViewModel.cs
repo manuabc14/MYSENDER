@@ -9,9 +9,7 @@ namespace MYSENDER.ViewModels
     public class BaseViewModel
     {
         public HeaderViewModel Header { get; set; }
-       // public List<Notification> Notifications { get; set; }
         public List<Menu> LeftMenus { get; set; }
-       // public BreadcrumbViewModel Breadcrumb { get; set; }
-        public Dictionary<string, bool> Rights { get; set; } = new Dictionary<string, bool>();
+        public decimal TotalAccount { get; set; }
     }
 }

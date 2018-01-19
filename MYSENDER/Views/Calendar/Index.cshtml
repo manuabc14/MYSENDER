@@ -1,32 +1,57 @@
-@{
-    ViewData["Title"] = "Accueil";
-}
 @using Microsoft.AspNetCore.Mvc.Rendering
-@model MYSENDER.ViewModels.SmsModeViewModel
+@model MYSENDER.ViewModels.AppointmentViewModel
+
+@section css_head {
+    <link rel="stylesheet" href="~/css/Calendar.css" />
+    <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.print.css" />
+}
+
+@section scripts_body_bottom
+    {
+    <script src="~/js/fullcalendar/moment.min.js"></script>
+    <script src="~/js/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/js/fullcalendar/locale/fr.js"></script>
+    <script src="~/js/Calendar.js" asp-append-version="true"></script>
+}
+
+<script type="text/javascript">
+    var events = [];
+</script>
+
 <div class="row">
-    <h1>Annuaire des rendez-vous</h1>
+    <div class="wrap-logo-title">
+        <a href="https://atrium-rec.secourspopulaire.fr/">
+            <img alt="List View" src="/images/mySender-icon.png">
+            <h1 class="h1" aria-level="1">Bienvenue sur MySender</h1>
+        </a>
+    </div>
 </div>
 <div class="row" id="divContainer">
     <div class="col-lg-3">
-        <nav id="left-menu" class="shadow-lvl-1">
-            <ul class="left-menu-lvl-1">
-                <li class="title-lvl-2">
-                    <a asp-area="" asp-controller="Calendar" asp-action="Index">Calendrier</a>
-                </li>
-                <li class="title-lvl-2">
-                    <a>Historiques des SMS</a>
-                </li>
-                <li class="title-lvl-2">
-                    <a></a>
-                </li>
-            </ul>
-        </nav>
+        @Html.Partial("_LeftMenu")
     </div>
     <div class="col-lg-9">
         <div class="row">
             <h2> Planning des RDV</h2>
             <hr class="hrstyle" />
-            <div id='calendar' class="row"></div>
+            <div id="mysender-calendar" class="shadow-lvl-1">
+                <div id='calendar'></div>
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    @foreach (var appointment in Model.Appointment)
+    {
+        <text>
+            events.push({
+                sessionId: "@appointment.AptId",
+                title: "@appointment.AppointmentTitle",
+                start: "@(appointment.Start.ToString("yyyy-MM-dd"))",
+                end: "@(appointment.Start.AddDays(1).ToString("yyyy-MM-dd"))"
+            });
+        </text>
+    }
+</script>
