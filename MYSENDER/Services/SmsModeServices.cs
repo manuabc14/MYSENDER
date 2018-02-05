@@ -112,5 +112,10 @@ namespace MYSENDER.Services
             context.Historique.Add(histo);
             context.SaveChanges();
         }
+
+        public void SendSmsForCurrentPlanning()
+        {
+            
+        }
     }
 }

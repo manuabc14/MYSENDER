@@ -9,6 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FormFactory" Version="2.0.108" />
+    <PackageReference Include="Hangfire" Version="1.6.17" />
+    <PackageReference Include="HangFire.Core" Version="1.6.17" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />

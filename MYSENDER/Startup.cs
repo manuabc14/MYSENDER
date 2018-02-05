@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using MYSENDER.Models;
+using System;
+using System.Linq;
+using MYSENDER.Services;
 
 namespace MYSENDER
 {
+
+    ///TO CALL DASHBOARD HANGFIRE
+    /// https://app_hostname/hangfire
+    /// 
     public class Startup
     {
-        //a coler dans le contexte en cas de mise a jour de la
-
-        //public string Connection { get; set; }
-
-        //public MYSENDERContext(string connexion)
-        //{
-        //    Connection = connexion;
-        //}
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -39,9 +35,12 @@ namespace MYSENDER
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DESKTOP-0M7S8I3\SQLEXPRESS2012;Database=MYSENDER;Trusted_Connection=True;";
+            const string connection = @"Server=TRSB1209002\SQLEXPRESS2014;Database=MYSENDER;Trusted_Connection=True;";
 
             services.AddEntityFramework().AddDbContext<MYSENDERContext>(options =>options.UseSqlServer(connection));
+            // hanfire sql
+            services.AddHangfire(config => config.UseSqlServerStorage(Configuration.GetConnectionString("HangFireConnectionString")));
+
             // Add framework services.
             services.AddMvc();
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
@@ -71,17 +70,21 @@ namespace MYSENDER
                 app.UseExceptionHandler("/Home/Error");
             }
 
-
             app.UseStaticFiles();
             app.UseSession();
             app.UseMvcWithDefaultRoute();
 
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
+
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            var _dbContext = new MYSENDERContext();
+            var test = _dbContext.Emetteur.FirstOrDefault(id => id.Id == 1).Id;
+            RecurringJob.AddOrUpdate(() => SmsModeServices.Instance.SendSmsForCurrentPlanning(),Cron.Minutely);
         }
     }
 }
