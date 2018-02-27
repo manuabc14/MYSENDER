@@ -8,9 +8,24 @@ ALTER TABLE HISTORIQUE DROP CONSTRAINT FK_EMETEUR
 DROP TABLE  HISTORIQUE  
 DROP TABLE EMETTEUR
 DROP TABLE  CONTACT
+DROP TABLE  APPOINTMENT
 
 
 
+/****************************APPOINTMENT*************************************/
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name ='APPOINTMENT' AND xtype='U')
+	BEGIN
+		CREATE TABLE APPOINTMENT
+		(
+		 ID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+		 TITLE NVARCHAR(500),
+		 STARTDATE DATETIME,
+		 ENDDATE DATETIME
+		 )
+	END
+GO
+
+/****************************EMETTEUR*************************************/
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name ='EMETTEUR' AND xtype='U')
 	BEGIN
@@ -38,41 +53,6 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name ='CONTACT' AND xtype='U')
 		 )
 	END
 GO
-
---IF EXISTS (SELECT NAME FROM sysobjects WHERE type = 'P' AND NAME = 'SELECT_ALL_CONTACT' )
---DROP PROCEDURE [dbo].[SELECT_ALL_CONTACT]
---	GO
---CREATE PROCEDURE [SELECT_ALL_CONTACT]
---	AS 
---	BEGIN
---		SELECT * FROM CONTACT
---	END
---GO
-
-
---IF EXISTS (SELECT NAME FROM sysobjects WHERE type = 'P' AND NAME = 'INSERT_CONTACT' )
---DROP PROCEDURE [dbo].[INSERT_CONTACT]
---	GO
---CREATE PROCEDURE [INSERT_CONTACT]
---	 @nom nvarchar(30),
---	 @prenom nvarchar(15),
---	 @tel int
---	AS 
---	BEGIN
---		INSERT INTO [CONTACT] 
---		(
---			NOM,
---			PRENOM,
---			TEL
---		)
---		VALUES 
---		(
---		 @nom,
---		 @prenom,
---		 @tel
---		 )
---	END
---GO
 
 /****************************HISTORISATION*************************************/
 
@@ -158,6 +138,26 @@ INSERT INTO [dbo].[CONTACT]
            ,'0612345678')
 GO
 
+
+
+		   
+INSERT INTO [dbo].[APPOINTMENT](TITLE,STARTDATE,ENDDATE)
+  VALUES    ('rdv le 30 pour votre séance avec GB', '25-02-2018 18:00','26-02-2018 19:00')
+GO
+
+INSERT INTO [dbo].[APPOINTMENT](TITLE,STARTDATE,ENDDATE)
+  VALUES    ('rdv le 30 pour votre séance avec GB', '28-02-2018 18:00','01-03-2018 19:00')
+GO
+
+INSERT INTO [dbo].[APPOINTMENT](TITLE,STARTDATE,ENDDATE)
+  VALUES    ('rdv le 30 pour votre séance avec GB', '27-02-2018 18:00','28-02-2018 19:00')
+GO
+
+
+INSERT INTO [dbo].[APPOINTMENT](TITLE,STARTDATE,ENDDATE)
+  VALUES    ('rdv le 30 pour votre séance avec sylvie', '01-03-2018 18:00','02-03-2018 19:00')
+GO
+		   
 
 
 select * from CONTACT

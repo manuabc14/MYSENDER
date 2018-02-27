@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MYSENDER.Models
 {
-    public partial class Historique
+    public class Historique
     {
         public int Id { get; set; }
         public int? IdEmetteur { get; set; }
@@ -14,5 +14,18 @@ namespace MYSENDER.Models
 
         public virtual Contact IdContactNavigation { get; set; }
         public virtual Emetteur IdEmetteurNavigation { get; set; }
+
+        public static Historique NotFound = new Historique
+        {
+            Id = 0,
+            IdEmetteur = 0,
+            Smstext = string.Empty,
+            IdContact = 0,
+            IdEmetteurNavigation = new Emetteur(),
+            DateEnvoi = DateTime.MinValue,
+            Statut = 0,
+            IdContactNavigation = new Contact()
+
+        };
     }
 }

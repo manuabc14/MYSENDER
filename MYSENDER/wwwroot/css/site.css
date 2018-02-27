@@ -83,12 +83,13 @@ textarea {
     }
 
 
-    .hrstyle {
-        margin-top: 0;
-        height: 10px;
-        border: 0;
-        box-shadow: 0 10px 10px -10px #8c8b8b inset;
-    }
+.hrstyle {
+    margin-top: 0;
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
 #divStatut {
     height: 200px;
     padding: 35px 20px;
@@ -108,6 +109,7 @@ textarea {
         top: 53px;
         z-index: -1;
     }
+
     #divMessage {
         margin-bottom: 55px;
     }
@@ -164,10 +166,11 @@ textarea {
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.my-form-control:focus {
-    border-bottom-color: #66afe9;
-    outline: 0;
-}
+
+    .my-form-control:focus {
+        border-bottom-color: #66afe9;
+        outline: 0;
+    }
 
 .input-field input[type=text]:focus + label {
     color: #000;
@@ -205,14 +208,118 @@ textarea {
     display: inline-block;
 }
 
-.wrap-logo-title img {
-    max-height: 95px;
-    display: inline-block
-}
+    .wrap-logo-title img {
+        max-height: 95px;
+        display: inline-block
+    }
+
     .wrap-logo-title h1 {
         display: inline-block;
         color: black;
     }
+
 #divContainer h2 {
     margin-top: 0;
+}
+
+/************Buttons************/
+.btn-border {
+    border: 1px solid #385B9D;
+    padding: 6px 20px;
+    display: inline-block;
+    height: 34px;
+    min-width: 110px;
+    text-align: center;
+    margin-left: 10px;
+    background: white;
+    color: #385B9D;
+}
+
+
+    .btn-border:hover,
+    .btn-border:focus {
+        background-color: #385B9D;
+        color: #FFF;
+        text-decoration: none;
+        outline: none;
+    }
+
+.btn-big {
+    height: 40px;
+    line-height: 25px;
+}
+
+.btn-big-plus {
+    margin-right: 14px;
+    font-weight: 100;
+    font-size: 35px;
+    line-height: 26px;
+    vertical-align: middle;
+    margin-left: -8px;
+    margin-top: -4px;
+    display: inline-block;
+}
+.btn-filled {
+    display: inline-block;
+    background-color: #b90719;
+    color: #fff;
+    padding: 8px 20px;
+    min-width: 110px;
+    text-align: center;
+    border: none;
+}
+
+    .btn-filled:hover,
+    .btn-filled:focus {
+        color: #fff;
+        text-decoration: none;
+        background-color: #810000;
+    }
+
+.btn-square {
+    background: none;
+    border: none;
+}
+
+.btn-square:focus {
+    outline: none;
+}
+
+.btn-square i {
+    cursor: pointer;
+    padding: 5px;
+    transition: color 200ms cubic-bezier(0.4,0.0,0.2,1), background 200ms cubic-bezier(0.4,0.0,0.2,1), box-shadow 400ms cubic-bezier(0.4,0.0,0.2,1);
+    color: rgba(0,0,0,0.54);
+}
+
+.btn-square i:hover {
+    background-color: rgba(0,0,0,.12);
+    color: #333 !important;
+}
+
+/* Text */
+
+.txt-justify {
+    text-align: justify;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-left {
+    text-align: left;
+}
+
+.txt-right {
+    text-align: right;
+}
+
+.required:after {
+    content: " *";
+    color: #ed174b;
+    display: inline;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

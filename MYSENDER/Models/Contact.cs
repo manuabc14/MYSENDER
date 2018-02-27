@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MYSENDER.Models
 {
-    public partial class Contact
+    public class Contact
     {
-        public Contact()
-        {
-            Historique = new HashSet<Historique>();
-        }
-
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Tel { get; set; }
+        public virtual ICollection<Historique> Historique { get; set; } = new HashSet<Historique>();
 
-        public virtual ICollection<Historique> Historique { get; set; }
+        public static Contact NotFound = new Contact
+        {
+            Id = 0,
+            Nom = string.Empty,
+            Prenom = string.Empty,
+            Tel = string.Empty,
+            Historique = new List<Historique>()
+        };
     }
 }

@@ -26,9 +26,11 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+	<DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.6.362" />
+	<DotNetCliToolReference Include="Microsoft.AspNetCore.Razor.Tools" Version="1.1.0-preview4-final" />
+	<DotNetCliToolReference Include="Microsoft.AspNetCore.Server.IISIntegration.Tools" Version="1.1.0-preview4-final" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Calendar\" />
     <Folder Include="wwwroot\css\fullcalendar\" />
     <Folder Include="wwwroot\js\fullcalendar\" />
   </ItemGroup>

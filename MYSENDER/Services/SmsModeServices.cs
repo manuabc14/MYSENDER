@@ -4,19 +4,29 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using MYSENDER.Common.IRepositories;
+using MYSENDER.DatabaseModels;
 using MYSENDER.Models;
+using Historique = MYSENDER.Models.Historique;
 
 namespace MYSENDER.Services
 {
     public class SmsModeServices
     {
+        private readonly IHistoriqueRepository _historiqueRepository;
+
+        public SmsModeServices(IHistoriqueRepository historiqueRepository)
+        {
+            _historiqueRepository = historiqueRepository;
+        }
+
         private static SmsModeServices _intance;
 
-        private static MYSENDERContext _dbContext;
+        private static MySenderContext _dbContext;
 
         private SmsModeServices()
         {
-            _dbContext = new MYSENDERContext();
+            _dbContext = new MySenderContext();
             //var connection = @"Server=DESKTOP-0M7S8I3\SQLEXPRESS2012;Database=MYSENDER;Trusted_Connection=True;";
         }
 
@@ -92,30 +102,25 @@ namespace MYSENDER.Services
 
 
             // insertion dans notre base de données
-            InsertHistorique(historique);
+            _historiqueRepository.Add(historique);
             return retour;
         }
 
-        public void InsertHistorique(Historique model)
-        {
-            var context = _dbContext;
+        //public void InsertHistorique(Historique model)
+        //{
+        //    var context = _dbContext;
 
-            var histo = new Historique()
-            {
-                DateEnvoi = DateTime.Now,
-                Smstext = model.Smstext,
-                IdEmetteur = model.IdEmetteur,
-                IdContact = model.IdContact,
-                Statut = model.Statut
-            };
+        //    var histo = new Historique()
+        //    {
+        //        DateEnvoi = DateTime.Now,
+        //        Smstext = model.Smstext,
+        //        IdEmetteur = model.IdEmetteur,
+        //        IdContact = model.IdContact,
+        //        Statut = model.Statut
+        //    };
 
-            context.Historique.Add(histo);
-            context.SaveChanges();
-        }
-
-        public void SendSmsForCurrentPlanning()
-        {
-            
-        }
+        //    context.Historique.Add(histo);
+        //    context.SaveChanges();
+        //}
     }
 }

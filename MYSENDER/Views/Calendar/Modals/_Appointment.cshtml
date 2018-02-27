@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using MYSENDER.ViewModels
+@model MYSENDER.ViewModels.Modals.ModalViewModel
+
+@{ var viewModel = Model.GetModel<AppointmentViewModel>(); }
+@{ var model = viewModel.Appointment; }
+@{ var modelContacts = viewModel.Contacts; }
+
+<div class="modal-group">
+    <div class="modal-label modal-required"> Intitul&#233; du RDV :</div>
+    <div class="modal-input">
+        @(string.IsNullOrEmpty(model.AppointmentTitle)
+                          ? Html.TextBoxFor(m => model.AppointmentTitle, new { maxlength = 30 })
+                          : Html.TextBoxFor(m => model.AppointmentTitle))
+        @Html.ValidationMessageFor(m => model.AppointmentTitle, null, new { @class = "field-validation-error" })
+    </div>
+</div>
+<div class="modal-group">
+    <div class="modal-label modal-required"> Nom :</div>
+    <div class="modal-input">
+        @Html.DropDownListFor(m => model.Contact.Nom, modelContacts.Select(s => new SelectListItem { Text = s.Prenom+" "+s.Nom , Value = s.Id.ToString() }))
+    </div>
+</div>
+<div class="modal-group">
+    <div class="modal-label modal-required"> Date de debut:</div>
+    <div class="modal-input">
+        @Html.TextBoxFor(m => model.AppointmentStart, model.AppointmentStart.ToString("dd/MM/yyyy HH:mm"), new { @class = "input-time-start" })
+    </div>
+</div>
+<div class="modal-group">
+    <div class="modal-label modal-required"> heure de Fin :</div>
+    <div class="modal-input">
+        @Html.TextBoxFor(m => model.AppointmentEnd, model.AppointmentEnd.ToString("dd/MM/yyyy HH:mm"), new { @class = "input-time-start" })
+    </div>
+</div>

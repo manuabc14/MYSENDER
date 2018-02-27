@@ -1,18 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+using MYSENDER.Common.IRepositories;
+using MYSENDER.Models;
 using MYSENDER.Services;
 using MYSENDER.ViewModels;
+using MYSENDER.ViewModels.Modals;
 
 namespace MYSENDER.Controllers
 {
     public class CalendarController : BaseController
     {
+        private readonly IContactRepository _contactRepository;
+        private readonly IAppointmentRepository _appointmentRepository;
+
+        public CalendarController(IContactRepository contactRepository, IAppointmentRepository appointmentRepository)
+        {
+            _contactRepository = contactRepository;
+            _appointmentRepository = appointmentRepository;
+        }
+
         // GET: Calendar
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var model = new AppointmentViewModel
             {
-                Appointment = AppointmentService.Instance.GetAppointments()
+                Appointments = await _appointmentRepository.List()
             };
             return View(model);
         }
@@ -24,19 +40,47 @@ namespace MYSENDER.Controllers
         }
 
         // GET: Calendar/Create
-        public ActionResult Create()
+        public async Task<ActionResult> AddEvent()
         {
-            return View();
+
+            var viewModel = new AppointmentViewModel
+            {
+                Appointment = new Appointment(),
+                Contacts = await _contactRepository.List()
+            };
+
+            var model = new ModalViewModel
+            {
+                Name = "Modals/_Appointment",
+                Title = "Ajouter un nouveau rendez-vous",
+                Action = "AddEvent",
+                Controller = "Calendar",
+                Buttons = new List<ModalViewModel.ButtonViewModel>
+                {
+                    new ModalViewModel.ButtonViewModel { Text = "Ajouter", Id = "addAppointment" }
+                },
+                Model = viewModel,
+                FormId = "addAppointmentForm",
+                Required = true
+            };
+            return PartialView("_Modal", model);
         }
 
         // POST: Calendar/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult AddEvent(IFormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                var app = new Appointment
+                {
+                    AppointmentTitle = Convert.ToString(collection["AppointmentTitle"]),
+                    AppointmentStart = Convert.ToDateTime(collection["AppointmentStart"]),
+                    AppointmentEnd = Convert.ToDateTime(collection["AppointmentEnd"])
+                };
+
+                _appointmentRepository.Add(app);
 
                 return RedirectToAction("Index");
             }

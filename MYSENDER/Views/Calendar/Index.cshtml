@@ -5,7 +5,7 @@
     ViewData["Title"] = "Calendrier";
 }
 @section css_head {
-    <link rel="stylesheet" href="~/css/Calendar.css" />
+    <link rel="stylesheet" href="~/css/calendar.min.css" />
     <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.css" />
     <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.print.css" />
 }
@@ -15,7 +15,10 @@
     <script src="~/js/fullcalendar/moment.min.js"></script>
     <script src="~/js/fullcalendar/fullcalendar.min.js"></script>
     <script src="~/js/fullcalendar/locale/fr.js"></script>
-    <script src="~/js/Calendar.js" asp-append-version="true"></script>
+    <script src="~/js/calendar.js" asp-append-version="true"></script>
+    <script src="~/js/Appointment.js"></script>
+    <script src="~/js/momentjs/moment-with-locales.min.js"></script>
+    <script src="~/js/materialdatetimepicker/bootstrap-material-datetimepicker.js"></script>
 }
 
 <script type="text/javascript">
@@ -24,7 +27,7 @@
 
 <div class="row">
     <div class="wrap-logo-title">
-        <a href="https://atrium-rec.secourspopulaire.fr/">
+        <a href="http://localhost/">
             <img alt="List View" src="/images/mySender-icon.png">
             <h1 class="h1" aria-level="1">Bienvenue sur MySender</h1>
         </a>
@@ -42,18 +45,30 @@
                 <div id='calendar'></div>
             </div>
         </div>
+        <div class="row">
+            <div class="calendar-buttons-div">
+                <a href="@Url.Action("AddEvent", "Calendar")" type="button" class="btn-border btn-big" data-toggle="modal" data-target="#modal-calendar-container">
+                    <span class="btn-big-plus">+</span>Ajouter
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-calendar-container" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
     </div>
 </div>
 
 <script type="text/javascript">
-    @foreach (var appointment in Model.Appointment)
+    @foreach (var appointment in Model.Appointments)
     {
         <text>
             events.push({
                 sessionId: "@appointment.AptId",
                 title: "@appointment.AppointmentTitle",
-                start: "@(appointment.Start.ToString("yyyy-MM-dd"))",
-                end: "@(appointment.Start.AddDays(1).ToString("yyyy-MM-dd"))"
+                start: "@(appointment.AppointmentStart.ToString("yyyy-MM-dd"))",
+                end: "@(appointment.AppointmentEnd.AddDays(1).ToString("yyyy-MM-dd"))"
             });
         </text>
     }
