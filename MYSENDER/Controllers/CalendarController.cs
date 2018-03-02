@@ -1,14 +1,12 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MYSENDER.Common.IRepositories;
+using MYSENDER.Models;
+using MYSENDER.ViewModels;
+using MYSENDER.ViewModels.Modals;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
-using MYSENDER.Common.IRepositories;
-using MYSENDER.Models;
-using MYSENDER.Services;
-using MYSENDER.ViewModels;
-using MYSENDER.ViewModels.Modals;
 
 namespace MYSENDER.Controllers
 {
@@ -42,10 +40,9 @@ namespace MYSENDER.Controllers
         // GET: Calendar/Create
         public async Task<ActionResult> AddEvent()
         {
-
             var viewModel = new AppointmentViewModel
             {
-                Appointment = new Appointment(),
+                Appointment = new Appointment{AppointmentStart = DateTime.Today},
                 Contacts = await _contactRepository.List()
             };
 

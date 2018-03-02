@@ -1,0 +1,17 @@
+﻿button[class^="dtp-btn"] {
+    border-radius: 0;
+    background: transparent;
+    color: #385b9d;
+    font-weight: 500;
+}
+
+    button[class^="dtp-btn"]:hover, button[class^="dtp-btn"]:focus {
+        background: transparent;
+        color: #112f5b;
+        font-weight: 500;
+    }
+
+
+.dtp div.dtp-actual-year {
+     color: white !important; 
+}

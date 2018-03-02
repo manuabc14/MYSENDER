@@ -9,5 +9,8 @@ namespace MYSENDER.DatabaseModels
         public string Title { get; set; }
         public DateTime? Startdate { get; set; }
         public DateTime? Enddate { get; set; }
+        public int? Idcontact { get; set; }
+
+        public virtual Contact IdcontactNavigation { get; set; }
     }
 }

@@ -138,8 +138,13 @@ INSERT INTO [dbo].[CONTACT]
            ,'0612345678')
 GO
 
+/**********************ajout de la clé etrangére contact******************//////////
 
+ALTER TABLE [APPOINTMENT]
+    ADD IDCONTACT INTEGER,
+    FOREIGN KEY(IDCONTACT) REFERENCES [CONTACT](ID);
 
+/********************************************************************//////////
 		   
 INSERT INTO [dbo].[APPOINTMENT](TITLE,STARTDATE,ENDDATE)
   VALUES    ('rdv le 30 pour votre séance avec GB', '25-02-2018 18:00','26-02-2018 19:00')

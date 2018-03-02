@@ -3,7 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@section css_head {
+    <link rel="stylesheet" href="~/css/site.min.css" />
+    <link rel="stylesheet" href="~/lib/Material-Design-Styled-Text-Field/css/jquery.material.form.min.css" />
+}
+@section scripts_body_bottom
+    {
+    <link rel="stylesheet" href="~/lib/Material-Design-Styled-Text-Field/js/jquery.material.form.min.js" />
+    <script src="~/js/site.min.js"></script>
+}
 <h2>Index</h2>
 
 <p>

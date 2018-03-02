@@ -8,7 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MYSENDER.DatabaseModels;
 using System;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Localization;
 
 namespace MYSENDER
 {
@@ -27,14 +30,9 @@ namespace MYSENDER
     /// 
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+			Configuration = configuration as IConfigurationRoot;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -42,22 +40,17 @@ namespace MYSENDER
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // and a lot more Services
-            const string connection = @"Server=TRSB1209002\SQLEXPRESS2014;Database=MYSENDER;Trusted_Connection=True;";
-            services.AddEntityFramework().AddDbContext<MySenderContext>(options => options.UseSqlServer(connection));
-            // Add framework services.
+            services.AddDbContext<MYSENDERContext>(options =>options.UseSqlServer(Configuration["ConnectionStrings:DatabaseConnection"]));
             services.AddMvc();
-
             // hanfire sql
-            services.AddHangfire(config => config.UseSqlServerStorage(Configuration.GetConnectionString("HangFireConnectionString")));
-
+            services.AddHangfire(config => config.UseSqlServerStorage(Configuration["ConnectionStrings:DatabaseConnection"]));
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.CookieHttpOnly = true;
-                options.CookieName = ".MySender.Session";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Name = ".MySender.Session";
             });
             services.RegisterServices();
         }
@@ -90,9 +83,18 @@ namespace MYSENDER
                 routes.MapRoute(name: "default",template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var _dbContext = new MySenderContext();
-            var test = _dbContext.Emetteur.FirstOrDefault(id => id.Id == 1).Id;
-        //    RecurringJob.AddOrUpdate(() => SmsModeServices.Instance.SendSmsForCurrentPlanning(),Cron.Minutely);
+            var di = new DirectoryInfo(Path.Combine(env.WebRootPath, @"lib\cldr-data\main"));
+            var supportedCultures = di.GetDirectories().Where(x => x.Name != "root").Select(x => new CultureInfo(x.Name)).ToList();
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(supportedCultures.FirstOrDefault(x => x.Name == "fr")),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+            // var _dbContext = new MySenderContext();
+            // var test = _dbContext.Emetteur.FirstOrDefault(id => id.Id == 1).Id;
+            //    RecurringJob.AddOrUpdate(() => SmsModeServices.Instance.SendSmsForCurrentPlanning(),Cron.Minutely);
         }
     }
 }

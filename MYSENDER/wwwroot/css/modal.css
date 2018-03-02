@@ -89,7 +89,8 @@
     padding-top: 10px;
 }
 
-.modal .modal-group .modal-label.modal-required:before {
+.modal .modal-group .modal-label.modal-required:before,
+.modal .modal-group .modal-input.modal-required:before {
     content: "*";
     color: #BF3A2B;
     padding-right: 5px;

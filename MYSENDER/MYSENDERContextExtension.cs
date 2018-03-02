@@ -9,7 +9,7 @@ namespace MYSENDER
 {
     public static class MySenderContextExtension
     {
-        public static async Task<Response> SaveChangesResponseAsync(this MySenderContext ctx)
+        public static async Task<Response> SaveChangesResponseAsync(this MYSENDERContext ctx)
         {
             var success = true;
             var nb = 0;

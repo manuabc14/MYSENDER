@@ -13,9 +13,9 @@ namespace MYSENDER.Repositories
     public class HistoriqueRepository:IHistoriqueRepository
     {
 
-        private readonly MySenderContext _ctx;
+        private readonly MYSENDERContext _ctx;
 
-        public HistoriqueRepository(MySenderContext ctx)
+        public HistoriqueRepository(MYSENDERContext ctx)
         {
             _ctx = ctx;
         }

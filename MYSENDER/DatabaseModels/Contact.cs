@@ -7,6 +7,7 @@ namespace MYSENDER.DatabaseModels
     {
         public Contact()
         {
+            Appointment = new HashSet<Appointment>();
             Historique = new HashSet<Historique>();
         }
 
@@ -15,6 +16,7 @@ namespace MYSENDER.DatabaseModels
         public string Prenom { get; set; }
         public string Tel { get; set; }
 
+        public virtual ICollection<Appointment> Appointment { get; set; }
         public virtual ICollection<Historique> Historique { get; set; }
     }
 }

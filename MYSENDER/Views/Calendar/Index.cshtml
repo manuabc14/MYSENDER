@@ -1,13 +1,17 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @model MYSENDER.ViewModels.AppointmentViewModel
-    
+
 @{
-    ViewData["Title"] = "Calendrier";
+    ViewData["Title"] = "Calendrier des RDV";
 }
 @section css_head {
-    <link rel="stylesheet" href="~/css/calendar.min.css" />
+    <link rel="stylesheet" href="~/css/materialdatetimepicker/bootstrap-material-datetimepicker.css" />
+    <link rel="stylesheet" href="~/css/materialdatetimepicker/bootstrap-material-datetimepicker-override.css" />
+    <link rel="stylesheet" href="~/css/calendar.min.css" />>
     <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.css" />
     <link rel="stylesheet" href="~/css/fullcalendar/fullcalendar.print.css" />
+    <link rel="stylesheet" href="~/lib/Material-Design-Styled-Text-Field/css/jquery.material.form.min.css" />
+    <link rel="stylesheet" href="~/lib/Material-Design-Styled-Text-Field/css/jquery-override.material.form.css" />
 }
 
 @section scripts_body_bottom
@@ -15,10 +19,11 @@
     <script src="~/js/fullcalendar/moment.min.js"></script>
     <script src="~/js/fullcalendar/fullcalendar.min.js"></script>
     <script src="~/js/fullcalendar/locale/fr.js"></script>
-    <script src="~/js/calendar.js" asp-append-version="true"></script>
-    <script src="~/js/Appointment.js"></script>
+    <script src="~/js/calendar.js"></script>
     <script src="~/js/momentjs/moment-with-locales.min.js"></script>
     <script src="~/js/materialdatetimepicker/bootstrap-material-datetimepicker.js"></script>
+    <script src="~/js/Appointment.js"></script>
+    <script src="~/lib/Material-Design-Styled-Text-Field/js/jquery.material.form.min.js"></script>
 }
 
 <script type="text/javascript">

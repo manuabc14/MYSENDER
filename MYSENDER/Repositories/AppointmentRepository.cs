@@ -12,9 +12,9 @@ namespace MYSENDER.Repositories
 {
     public class AppointmentRepository:IAppointmentRepository
     {
-        private readonly MySenderContext _ctx;
+        private readonly MYSENDERContext _ctx;
 
-        public AppointmentRepository(MySenderContext ctx)
+        public AppointmentRepository(MYSENDERContext ctx)
         {
             _ctx = ctx;
         }
@@ -47,7 +47,8 @@ namespace MYSENDER.Repositories
             {
                 Title = entity.AppointmentTitle,
                 Startdate = entity.AppointmentStart,
-                Enddate = entity.AppointmentEnd
+                Enddate = entity.AppointmentEnd,
+                Idcontact = entity.Contact.Id
             });
             return await _ctx.SaveChangesResponseAsync();
         }

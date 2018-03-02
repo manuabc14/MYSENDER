@@ -63,38 +63,48 @@ $(document).ready(function () {
     });
 });
 
-//** focus and focusout on label*/
-$('.input-field #inputnom').focus(
-    function () { $('.input-field #lblnom').addClass('active') }
-);
-$('.input-field #inputnom').focusout(
-    function() {
-        if ($(".input-field #inputnom").val() === "") {
-            $('.input-field #lblnom').removeClass('active');
-        }
-    }
-);
+////** focus and focusout on label*/
+//$('.input-field #inputnom').focus(
+//    function () { $('.input-field #lblnom').addClass('active') }
+//);
+//$('.input-field #inputnom').focusout(
+//    function() {
+//        if ($(".input-field #inputnom").val() === "") {
+//            $('.input-field #lblnom').removeClass('active');
+//        }
+//    }
+//);
 
 
-$('.input-field #inputprenom').focus(
-    function () { $('.input-field #lblprenom').addClass('active') }
-);
-$('.input-field #inputprenom').focusout(
-    function() {
-        if ($(".input-field #inputprenom").val() === "") {
-            $('.input-field #lblprenom').removeClass('active');
-        }
-    }
-);
+//$('.input-field #inputprenom').focus(
+//    function () { $('.input-field #lblprenom').addClass('active') }
+//);
+//$('.input-field #inputprenom').focusout(
+//    function() {
+//        if ($(".input-field #inputprenom").val() === "") {
+//            $('.input-field #lblprenom').removeClass('active');
+//        }
+//    }
+//);
 
 
-$('.input-field #inputtel').focus(
-    function () { $('.input-field #lbltel').addClass('active') }
-);
-$('.input-field #inputtel').focusout(
-    function() {
-        if ($(".input-field #inputtel").val() === "") {
-            $('.input-field #lbltel').removeClass('active');
-        }
-    }
-);
+//$('.input-field #inputtel').focus(
+//    function () { $('.input-field #lbltel').addClass('active') }
+//);
+//$('.input-field #inputtel').focusout(
+//    function() {
+//        if ($(".input-field #inputtel").val() === "") {
+//            $('.input-field #lbltel').removeClass('active');
+//        }
+//    }
+//);
+
+
+$(function () {
+    $('form.material').materialForm();
+
+    $('form').validate({
+        errorPlacement: function (error, element) { }
+    });
+
+});

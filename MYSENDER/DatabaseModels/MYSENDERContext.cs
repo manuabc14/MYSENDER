@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MYSENDER.DatabaseModels
 {
-    public class MySenderContext : DbContext
+    public partial class MYSENDERContext : DbContext
     {
         public virtual DbSet<AggregatedCounter> AggregatedCounter { get; set; }
         public virtual DbSet<Appointment> Appointment { get; set; }
@@ -21,6 +19,8 @@ namespace MYSENDER.DatabaseModels
         public virtual DbSet<Server> Server { get; set; }
         public virtual DbSet<Set> Set { get; set; }
         public virtual DbSet<State> State { get; set; }
+
+        public MYSENDERContext(DbContextOptions<MYSENDERContext> options): base(options){}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -55,6 +55,8 @@ namespace MYSENDER.DatabaseModels
                     .HasColumnName("ENDDATE")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.Idcontact).HasColumnName("IDCONTACT");
+
                 entity.Property(e => e.Startdate)
                     .HasColumnName("STARTDATE")
                     .HasColumnType("datetime");
@@ -62,6 +64,11 @@ namespace MYSENDER.DatabaseModels
                 entity.Property(e => e.Title)
                     .HasColumnName("TITLE")
                     .HasMaxLength(500);
+
+                entity.HasOne(d => d.IdcontactNavigation)
+                    .WithMany(p => p.Appointment)
+                    .HasForeignKey(d => d.Idcontact)
+                    .HasConstraintName("FK__APPOINTME__IDCON__3F466844");
             });
 
             modelBuilder.Entity<Contact>(entity =>

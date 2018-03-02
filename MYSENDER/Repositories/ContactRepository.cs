@@ -13,9 +13,9 @@ namespace MYSENDER.Repositories
 {
     public class ContactRepository: IContactRepository
     {
-        private readonly MySenderContext _ctx;
+        private readonly MYSENDERContext _ctx;
 
-        public ContactRepository(MySenderContext ctx)
+        public ContactRepository(MYSENDERContext ctx)
         {
             _ctx = ctx;
         }
@@ -27,16 +27,16 @@ namespace MYSENDER.Repositories
                 Id = t.Id,
                 Nom = t.Nom,
                 Prenom = t.Prenom,
-                Tel = t.Tel,
-                Historique = t.Historique.Select(h=>new Historique
-                {
-                    Id = h.Id,
-                    IdEmetteur = h.IdEmetteur,
-                    IdContact = h.IdContact,
-                    Smstext = h.Smstext,
-                    DateEnvoi = h.DateEnvoi,
-                    Statut = h.Statut
-                }).ToList()
+                Tel = t.Tel
+                //Historique = t.Historique.Select(h=>new Historique
+                //{
+                //    Id = h.Id,
+                //    IdEmetteur = h.IdEmetteur,
+                //    IdContact = h.IdContact,
+                //    Smstext = h.Smstext,
+                //    DateEnvoi = h.DateEnvoi,
+                //    Statut = h.Statut
+                //}).ToList()
             }).ToListAsync();
         }
 

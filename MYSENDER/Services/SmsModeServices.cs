@@ -22,11 +22,11 @@ namespace MYSENDER.Services
 
         private static SmsModeServices _intance;
 
-        private static MySenderContext _dbContext;
+        private static MYSENDERContext _dbContext;
 
         private SmsModeServices()
         {
-            _dbContext = new MySenderContext();
+           // _dbContext = new MYSENDERContext();
             //var connection = @"Server=DESKTOP-0M7S8I3\SQLEXPRESS2012;Database=MYSENDER;Trusted_Connection=True;";
         }
 

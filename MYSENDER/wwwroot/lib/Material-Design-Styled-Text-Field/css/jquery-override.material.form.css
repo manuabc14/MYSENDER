@@ -1,0 +1,9 @@
+﻿.material .material-bar:before,
+.material .material-bar:after {
+    background: #000000 !important;
+}
+
+
+.material .material-select .material-bar {
+    background: #000000 !important;
+}
